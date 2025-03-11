@@ -81,19 +81,22 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    height: 50,
-    backgroundColor: "black",
-    borderRadius: 8,
+    
+    backgroundColor: "#BDBDBD",
+    borderRadius: 50,
     marginBottom: 80,
+    height: 60,
     padding: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 230,
+    marginTop: 210,
+    paddingHorizontal: 20,
+
   },
   buttonText: {
     fontSize: 16,
-    color: "#ffffff",
-    fontWeight: "bold",
+    color: "#737373",
+    fontWeight: "400",
   },
   arrowLeft: {
     

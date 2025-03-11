@@ -2,8 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import logo from "../assets/logo.png";
 import { useRouter } from "expo-router";
-import {RegisterPage} from "./register/RegisterPage";
-
+  
 const ObytesDesignSystem: React.FC = () => {
   const router = useRouter();
   console.log("Router:", router);
@@ -14,7 +13,7 @@ const ObytesDesignSystem: React.FC = () => {
       return;
     }
     try {
-      router.push({pathname: "/register/RegisterPage"}); // Updated route
+      router.push({pathname: "/register/EmailPage"}); // Updated route
       console.log("Navigating to registration page");
     } catch (error) {
       console.error("Navigation error:", error);
