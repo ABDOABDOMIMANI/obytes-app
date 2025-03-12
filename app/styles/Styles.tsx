@@ -5,7 +5,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 
 
-const LoginPage = () => {
+const Styles = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -18,7 +18,6 @@ const LoginPage = () => {
     // Simulate a login API call
     if (email === "Admin" && password === "Admin") {
       Alert.alert("Success", "Logged in successfully!");
-      router.push({pathname: "../styles/Styles"});
     } else {
       Alert.alert("Error", "Invalid email or password");
     }
@@ -29,22 +28,9 @@ const LoginPage = () => {
       <View style={styles.titleContainer}>
       <AntDesign style={styles.arrowLeft} name="arrowleft" size={26} color="black" onPress={() => router.push({pathname: "../EntryPage"})} />
         <Text style={styles.title}>Welcome Back!</Text>
-      <TextField 
-        title="Email"
-        placeholder="Enter your email"
-        value={email}
-        onChangeText={setEmail}
-        
-      />
-      <TextField 
-        title="Password"
-        placeholder="Enter your password"
-        value={password}
-        onChangeText={setPassword}
-        
-      />
+      
       </View>
-      <Text style={styles.forgotPassword}>this is a hint text to help user </Text>
+      <Text style={styles.forgotPassword}>this is Style page </Text>
 
       {/* Login Button */}
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -113,4 +99,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginPage;
+export default Styles;

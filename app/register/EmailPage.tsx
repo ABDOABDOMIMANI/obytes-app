@@ -57,13 +57,17 @@ const EmailPage = () => {
   });
 
   const handleContinue = () => {
-    if (!email) {
-      Alert.alert("Error", "Please enter your email");
-      return;
-    }
-    // Add your email validation logic here
-    router.push("/PasswordPage");
-  };
+  if (!email) {
+    Alert.alert("Error", "Please enter your email");
+    return;
+  }
+  try {
+    router.push("/register/PasswordPage");  // Updated path to match your project structure
+    console.log("Navigating to password page");
+  } catch (error) {
+    console.error("Navigation error:", error);
+  }
+};
 
   return (
     <KeyboardAvoidingView 

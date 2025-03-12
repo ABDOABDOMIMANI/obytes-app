@@ -24,8 +24,9 @@ const TextField: React.FC<TextFieldProps> = ({
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
-        
         placeholderTextColor="#A0A0A0"
+        returnKeyType="done" // Set the return key to "Done"
+        // Dismiss the keyboard when "Done" is pressed
       />
     </View>
   );
