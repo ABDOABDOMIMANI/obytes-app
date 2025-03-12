@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
-import TextField from "../../components/TextFieldProps";
+import TextField from "../../../components/TextFieldProps";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 
@@ -26,8 +26,7 @@ const Styles = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-      <AntDesign style={styles.arrowLeft} name="arrowleft" size={26} color="black" onPress={() => router.push({pathname: "../EntryPage"})} />
-        <Text style={styles.title}>Welcome Back!</Text>
+        <Text style={styles.title}>Styles</Text>
       
       </View>
       <Text style={styles.forgotPassword}>this is Style page </Text>
