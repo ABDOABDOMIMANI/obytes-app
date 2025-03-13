@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 interface TextFieldProps {
@@ -6,7 +6,6 @@ interface TextFieldProps {
   placeholder: string;
   value?: string;
   onChangeText?: (text: string) => void;
-  
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -14,19 +13,21 @@ const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   value,
   onChangeText,
-  
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, isFocused && styles.inputFocused]}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         placeholderTextColor="#A0A0A0"
-        returnKeyType="done" // Set the return key to "Done"
-        // Dismiss the keyboard when "Done" is pressed
+        returnKeyType="done"
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </View>
   );
@@ -50,9 +51,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     fontSize: 13,
     color: '#000000',
-
-    
-
+    borderWidth: 2,
+    borderColor: 'transparent', // Default border color
+  },
+  inputFocused: {
+    borderColor: '#000000', // Black border when focused
   },
 });
 
