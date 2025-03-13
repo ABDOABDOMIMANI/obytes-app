@@ -26,7 +26,7 @@ const Styles = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.titleContainer} contentContainerStyle={{ paddingBottom: 50 }}>
+      <ScrollView style={styles.titleContainer} contentContainerStyle={{ paddingBottom: 50 }} showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Obytes Design System</Text>
         <Subtitle text="Typography" />
         <View style={styles.grid}>

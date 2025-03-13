@@ -15,6 +15,7 @@ import TextField from "../../components/TextFieldProps";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import Feather from '@expo/vector-icons/Feather';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PasswordPage = () => {
   const [password, setPassword] = useState("");
@@ -55,20 +56,24 @@ const PasswordPage = () => {
     outputRange: [10, 100]
   });
 
-  const handleContinue = () => {
-    if (!password) {
-      Alert.alert("Error", "Please enter your password");
-      return;
-    } else if (password.length < 4) {
-      Alert.alert("Error", "Password must be at least 4 characters long");
-      return;
-    } else {
-      // Navigate to the ConfirmPasswordPage
-      router.push("../register/ConfirmPage");
-      sessionStorage.setItem("password", password); // Store password in sessionStorage
 
+const handleContinue = async () => {
+  if (!password) {
+    Alert.alert("Error", "Please enter your password");
+    return;
+  } else if (password.length < 4) {
+    Alert.alert("Error", "Password must be at least 4 characters long");
+    return;
+  } else {
+    try {
+      await AsyncStorage.setItem("password", password); // Store password
+      router.push("../register/ConfirmPage"); // Navigate to the confirmation page
+    } catch (error) {
+      console.error("Error saving password:", error);
     }
-  };
+  }
+};
+
 
   return (
     <KeyboardAvoidingView 

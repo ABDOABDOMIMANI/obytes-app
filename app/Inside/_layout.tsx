@@ -6,6 +6,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { StyleProp, TextStyle } from 'react-native';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Alert } from 'react-native';
 
 // Define a type for the tab icon props
 type TabIconProps = {
@@ -19,7 +20,23 @@ const renderIcon = (IconComponent: React.ComponentType<any>, name: string) => {
     <IconComponent name={name} size={size} color={color} />
   );
 };
-
+const confirmLogout = (router: any) => {
+  Alert.alert(
+    "Confirm Logout",
+    "Are you sure you want to log out?",
+    [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Yes, Logout",
+        style: "destructive",
+        onPress: () => router.push("../../../EntryPage"),
+      },
+    ]
+  );
+};
 export default function Layout() {
   const router = useRouter(); // Initialize router
 
@@ -65,8 +82,8 @@ export default function Layout() {
           title: "Styles",
           tabBarIcon: renderIcon(Feather, "home"),
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push("../styles/Styles")}>
-             <MaterialIcons name="logout" size={30} color="#FF6C00" style={{marginRight: 28}} />
+            <TouchableOpacity onPress={() => confirmLogout(router)}>
+              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
             </TouchableOpacity>
           ),
         }}
@@ -77,8 +94,8 @@ export default function Layout() {
           title: "Feed",
           tabBarIcon: renderIcon(Entypo, "news"),
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push("../styles/Styles")}>
-             <MaterialIcons name="logout" size={30} color="#FF6C00" style={{marginRight: 28}} />
+            <TouchableOpacity onPress={() => confirmLogout(router)}>
+              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
             </TouchableOpacity>
           ),
         }}
@@ -89,7 +106,7 @@ export default function Layout() {
           title: "Settings",
           tabBarIcon: renderIcon(Entypo, "cog"),
           headerLeft: () => (
-            <TouchableOpacity onPress={() => router.push("../styles/Styles")}>
+            <TouchableOpacity onPress={() => router.push("../../../EntryPage")}>
               <AntDesign
                 name="arrowleft"
                 size={26}
@@ -99,8 +116,8 @@ export default function Layout() {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push("../styles/Styles")}>
-             <MaterialIcons name="logout" size={30} color="#FF6C00" style={{marginRight: 28}} />
+            <TouchableOpacity onPress={() => confirmLogout(router)}>
+              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
             </TouchableOpacity>
           ),
         }}

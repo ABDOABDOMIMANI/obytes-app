@@ -15,7 +15,7 @@ import TextField from "../../components/TextFieldProps";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import Feather from '@expo/vector-icons/Feather';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const ConfirmPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -55,18 +55,21 @@ const ConfirmPage = () => {
     outputRange: [10, 100]
   });
 
-  const handleContinue = () => {
-    const storedPassword = sessionStorage.getItem("password"); // Retrieve stored password
+  const handleContinue = async () => {
+    try {
+      const storedPassword = await AsyncStorage.getItem("password"); // Retrieve stored password
   
-    if (!password) {
-      Alert.alert("Error", "Please enter your password");
-      return;
-    } else if (password !== storedPassword) {
-      Alert.alert("Error", "Passwords do not match. Please try again.");
-      return;
-    } else {
-      Alert.alert("Success", "Password confirmed successfully!");
-      router.push("../../styles/Styles"); // Navigate to the next page
+      if (!password) {
+        Alert.alert("Error", "Please enter your password");
+        return;
+      } else if (password !== storedPassword) {
+        Alert.alert("Error", "Passwords do not match. Please try again.");
+        return;
+      } else {
+        router.push("../../Inside/styles/Styles"); // Navigate to the next page
+      }
+    } catch (error) {
+      console.error("Error retrieving password:", error);
     }
   };
 
