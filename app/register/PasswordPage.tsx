@@ -59,9 +59,15 @@ const PasswordPage = () => {
     if (!password) {
       Alert.alert("Error", "Please enter your password");
       return;
+    } else if (password.length < 4) {
+      Alert.alert("Error", "Password must be at least 4 characters long");
+      return;
+    } else {
+      // Navigate to the ConfirmPasswordPage
+      router.push("../register/ConfirmPage");
+      sessionStorage.setItem("password", password); // Store password in sessionStorage
+
     }
-    // Add your password validation logic here
-    // Navigate to next screen
   };
 
   return (
@@ -90,8 +96,8 @@ const PasswordPage = () => {
                 placeholder="Enter your password"
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry={true}
-                autoCapitalize="none"
+                
+                
               />
             </View>
 
@@ -165,7 +171,7 @@ const styles = StyleSheet.create({
     marginBottom: -21,
   },
   termsText: {
-    fontSize: 13,
+    fontSize: 10,
     color: "#A3A3A3",
     textAlign: "center",
     lineHeight: 20,
