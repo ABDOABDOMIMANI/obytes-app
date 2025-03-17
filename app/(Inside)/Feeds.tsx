@@ -1,23 +1,28 @@
 import React, { useState } from "react";
-import { View, ScrollView, Image, StyleSheet } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import FeedPost from "../../components/FeedPost";
 
 const Feeds = () => {
   // Simulate feed data (empty array for now)
-  const [feedData, setFeedData] = useState(Array.from({ length: 200 }, (_, index) => index + 1));
+  const [feedData, setFeedData] = useState(
+    Array.from({ length: 200 }, (_, index) => index + 1)
+  );
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center p-5 bg-white">
       {feedData.length === 0 ? (
-        <View style={styles.imageContainer}>
-          <Image 
+        <View className="flex-1 justify-center items-center">
+          <Image
             source={require("../../assets/nopost.png")} // Adjust path if needed
-            style={styles.image}
+            className="w-[350px] h-[350px] mt-[-250px]"
             resizeMode="contain"
           />
         </View>
       ) : (
-        <ScrollView style={styles.feedContainer} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          className="w-full mt-[-10px]"
+          showsVerticalScrollIndicator={false}
+        >
           {feedData.map((item) => (
             <FeedPost id={item} key={item} />
           ))}
@@ -26,27 +31,5 @@ const Feeds = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#ffffff",
-  },
-  feedContainer: {
-    marginTop: -10,
-  },
-  imageContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    marginTop: -250,
-    width: 350, // Adjust size as needed
-    height: 350,
-  },
-});
 
 export default Feeds;

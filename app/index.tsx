@@ -4,6 +4,7 @@ import SplashScreen from "../splash-screen";
 import { useEffect, useState } from "react";
 import EntryPage from "../app/EntryPage";
 import { useRouter } from "expo-router";
+import "../global.css"
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);

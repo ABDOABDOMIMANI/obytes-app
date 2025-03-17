@@ -1,160 +1,132 @@
-import React from 'react';
-import { View, Text, Image ,StyleSheet, TouchableOpacity, Linking } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import Feather from '@expo/vector-icons/Feather';
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import React from "react";
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Feather from "@expo/vector-icons/Feather";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+
 const Settings = () => {
   const handleLinkPress = (url: string) => {
     Linking.openURL(url).catch((err) =>
-      console.error('Failed to open link:', err)
+      console.error("Failed to open link:", err)
     );
   };
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 p-5 bg-white">
       {/* UI Section */}
-      <Text style={styles.sectionTitle}>UI</Text>
-      <View style={styles.sectionContent}>
-        <View style={styles.row}>
-        <Text style={[styles.text, {width: 200} , {marginLeft: 4}]}>Language : English</Text>
-        <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 64}}  />
+      <Text className="text-lg font-normal text-black mb-2.5">UI</Text>
+      <View className="border border-neutral-200 rounded-xl p-3 pl-5 mb-10">
+        <View className="flex-row items-center gap-5 w-full">
+          <Text className="text-sm text-black ml-1 w-[200px]">
+            Language : English
+          </Text>
+          <AntDesign
+            name="arrowright"
+            size={24}
+            color="#CCCCCC"
+            className="ml-16"
+          />
         </View>
-        
       </View>
 
       {/* General Section */}
-      <Text style={styles.sectionTitle}>General</Text>
-      <View style={styles.sectionContent}>
-        <TouchableOpacity style={styles.item}>
-            <View style={styles.row}>
-                <View style={[styles.row, {width: 200}]}>
-                    <Feather name="share-2" size={24} color="#737373" />
-                    <Text style={styles.text}>Share</Text>
-                </View>
-                    <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 67}} />
+      <Text className="text-lg font-normal text-black mb-2.5">General</Text>
+      <View className="border border-neutral-200 rounded-xl p-3 pl-5 mb-10">
+        <TouchableOpacity className="py-2.5">
+          <View className="flex-row items-center gap-5 w-full">
+            <View className="flex-row items-center gap-5 w-[200px]">
+              <Feather name="share-2" size={24} color="#737373" />
+              <Text className="text-sm text-black -ml-2.5">Share</Text>
             </View>
-          
+            <AntDesign
+              name="arrowright"
+              size={24}
+              color="#CCCCCC"
+              className="ml-16"
+            />
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
-            <View style={styles.row}>
-            <View style={[styles.row, {width: 200}]}>
-                <Feather name="star" size={24} color="#737373" />
-                <Text style={styles.text}>Rate</Text>
+
+        <TouchableOpacity className="py-2.5">
+          <View className="flex-row items-center gap-5 w-full">
+            <View className="flex-row items-center gap-5 w-[200px]">
+              <Feather name="star" size={24} color="#737373" />
+              <Text className="text-sm text-black -ml-2.5">Rate</Text>
             </View>
-            
-            <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 67}} />
-            </View>
+            <AntDesign
+              name="arrowright"
+              size={24}
+              color="#CCCCCC"
+              className="ml-16"
+            />
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.item}>
-            <View style={styles.row}>
-            <View style={[styles.row, {width: 200}]}>
-                <AntDesign name="hearto" size={24} color="#737373" />
-                <Text style={styles.text}>Support</Text>
+
+        <TouchableOpacity className="py-2.5">
+          <View className="flex-row items-center gap-5 w-full">
+            <View className="flex-row items-center gap-5 w-[200px]">
+              <AntDesign name="hearto" size={24} color="#737373" />
+              <Text className="text-sm text-black -ml-2.5">Support</Text>
             </View>
-            
-                <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 67}} />
-            </View>
+            <AntDesign
+              name="arrowright"
+              size={24}
+              color="#CCCCCC"
+              className="ml-16"
+            />
+          </View>
         </TouchableOpacity>
       </View>
 
       {/* Links Section */}
-      <Text style={styles.sectionTitle}>Links</Text>
-      <View style={styles.sectionContent}>
+      <Text className="text-lg font-normal text-black mb-2.5">Links</Text>
+      <View className="border border-neutral-200 rounded-xl p-3 pl-5 mb-10">
         <TouchableOpacity
-          style={styles.item}
-          onPress={() => handleLinkPress('https://github.com')}
+          className="py-2.5"
+          onPress={() => handleLinkPress("https://github.com")}
         >
-            <View style={styles.row}>
-                <View style={[styles.row, {width: 200}]}>
-                    <SimpleLineIcons name="social-github" size={24} color="#737373" />
-                    <Text style={styles.text}>Github</Text>
-                </View>
-                <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 67}} />
+          <View className="flex-row items-center gap-5 w-full">
+            <View className="flex-row items-center gap-5 w-[200px]">
+              <SimpleLineIcons name="social-github" size={24} color="#737373" />
+              <Text className="text-sm text-black -ml-2.5">Github</Text>
             </View>
+            <AntDesign
+              name="arrowright"
+              size={24}
+              color="#CCCCCC"
+              className="ml-16"
+            />
+          </View>
         </TouchableOpacity>
+
         <TouchableOpacity
-          style={styles.item}
-          onPress={() => handleLinkPress('https://obytes.com')}
+          className="py-2.5"
+          onPress={() => handleLinkPress("https://obytes.com")}
         >
-            <View style={styles.row}>
-                <View style={[styles.row, {width: 200}]}>
-                    <AntDesign name="earth" size={24} color="#737373" />
-                    <Text style={styles.text}>Website</Text>
-                </View>
-                <AntDesign name="arrowright" size={24} color="#CCCCCC" style={{marginLeft: 67}} />
+          <View className="flex-row items-center gap-5 w-full">
+            <View className="flex-row items-center gap-5 w-[200px]">
+              <AntDesign name="earth" size={24} color="#737373" />
+              <Text className="text-sm text-black -ml-2.5">Website</Text>
             </View>
+            <AntDesign
+              name="arrowright"
+              size={24}
+              color="#CCCCCC"
+              className="ml-16"
+            />
+          </View>
         </TouchableOpacity>
       </View>
 
       {/* Footer */}
-      <View style={styles.avatarContainer} >
-            <Image source={require('../../assets/footer.png')} style={styles.avatar} />
-            </View>
+      <View className="items-center justify-center mt-[-20px]">
+        <Image
+          source={require("../../assets/footer.png")}
+          className="w-[150px] h-[20px]"
+        />
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: '#000000',
-    marginBottom: 10,
-  },
-  sectionContent: {
-    borderWidth: 1,
-    borderColor: '#F0EFEE',
-    borderRadius: 10,
-    padding: 13,
-    paddingLeft: 20,
-    marginBottom: 40,
-    
-    
-  },
-  text: {
-    fontSize: 14,
-    color: '#000000',
-    marginLeft: -10,
-  },
-  item: {
-    paddingVertical: 10,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: '#E0E0E0',
-    marginVertical: 20,
-  },
-  footerText: {
-    fontSize: 14,
-    color: '#A0A0A0',
-    textAlign: 'center',
-    marginTop: -20,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 20,
-    width: '100%',
-  },
-  avatar: {
-    width: 150,
-    height: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-    
-  },
-  avatarContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -20,
-
-  },
-});
 
 export default Settings;

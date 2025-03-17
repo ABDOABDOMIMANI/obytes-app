@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, TextInput } from "react-native";
 
 interface TextFieldProps {
   title: string;
@@ -17,10 +17,12 @@ const TextField: React.FC<TextFieldProps> = ({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+    <View className="mb-8">
+      <Text className="text-base font-normal text-gray-600 mb-2">{title}</Text>
       <TextInput
-        style={[styles.input, isFocused && styles.inputFocused]}
+        className={`w-[340px] h-[52px] bg-gray-200 rounded-lg px-4 text-sm text-black border-2 ${
+          isFocused ? "border-black" : "border-transparent"
+        }`}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
@@ -32,31 +34,5 @@ const TextField: React.FC<TextFieldProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 30,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#525252',
-    marginBottom: 8,
-  },
-  input: {
-    width: 340,
-    height: 52,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    fontSize: 13,
-    color: '#000000',
-    borderWidth: 2,
-    borderColor: 'transparent', // Default border color
-  },
-  inputFocused: {
-    borderColor: '#000000', // Black border when focused
-  },
-});
 
 export default TextField;

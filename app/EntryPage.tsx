@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import logo from "../assets/logo.png";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
-  
+import logo from "../assets/logo.png";
+import "../global.css"
+
+
 const ObytesDesignSystem: React.FC = () => {
   const router = useRouter();
   console.log("Router:", router);
@@ -13,19 +15,20 @@ const ObytesDesignSystem: React.FC = () => {
       return;
     }
     try {
-      router.push("/register/EmailPage"); // Updated route
+      router.push("/EmailPage"); // Updated route
       console.log("Navigating to registration page");
     } catch (error) {
       console.error("Navigation error:", error);
     }
   };
+
   const handleLoginPress = () => {
     if (!router) {
       console.error("Router is undefined");
       return;
     }
     try {
-      router.push({pathname: "/login/LoginPage"}); // Updated route
+      router.push("/LoginPage"); // Updated route
       console.log("Navigating to registration page");
     } catch (error) {
       console.error("Navigation error:", error);
@@ -33,89 +36,35 @@ const ObytesDesignSystem: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 justify-center items-center px-5 bg-white mt-20">
       {/* Logo */}
-      <Image style={styles.logo} source={logo} />
+      <Image className="w-48 h-36 object-contain pt-20 pl-2" source={logo} />
 
       {/* Subheader */}
-      <Text style={styles.subHeader}>Design system</Text>
+      <Text className="text-2xl text-black mb-5">Design system</Text>
 
       {/* Description */}
-      <Text style={styles.description}>
+      <Text className="text-base text-gray-500 text-center mb-10 w-85">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus mollis nisl.
       </Text>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
-          <Text style={styles.buttonTextLogin}>Login</Text>
+      <View className="flex-row gap-7">
+        <TouchableOpacity
+          className="w-40 py-4 rounded-full bg-black border-2 border-black items-center"
+          onPress={handleLoginPress}
+        >
+          <Text className="text-white text-lg font-medium">Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, styles.signUpButton]}
+          className="w-40 py-4 rounded-full bg-white border-2 border-black items-center"
           onPress={handleRegisterPress}
         >
-          <Text style={styles.buttonTextSignUp}>Sign up</Text>
+          <Text className="text-black text-lg font-medium">Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    marginTop: 80,
-    backgroundColor: "#ffffff",
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    resizeMode: "contain",
-    paddingTop: 80,
-    paddingLeft: 10,
-  },
-  subHeader: {
-    fontSize: 24,
-    color: "#000000",
-    marginBottom: 20,
-  },
-  description: {
-    fontSize: 16,
-    color: "#666666",
-    textAlign: "center",
-    marginBottom: 40,
-    width: 300,
-  },
-  button: {
-    width: "40%",
-    padding: 15,
-    borderRadius: 81,
-    backgroundColor: "black",
-    alignItems: "center",
-    marginBottom: 10,
-    borderWidth: 2,
-  },
-  signUpButton: {
-    backgroundColor: "white",
-  },
-  buttonTextLogin: {
-    fontSize: 16,
-    color: "white",
-    fontWeight: "400",
-  },
-  buttonTextSignUp: {
-    fontSize: 16,
-    color: "black",
-    fontWeight: "400",
-    borderColor: "black",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    gap: 30,
-  },
-});
 
 export default ObytesDesignSystem;

@@ -1,12 +1,10 @@
 import { Tabs } from "expo-router";
 import { useRouter } from "expo-router";
-import Feather from '@expo/vector-icons/Feather';
-import Entypo from '@expo/vector-icons/Entypo';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { StyleProp, TextStyle } from 'react-native';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Alert } from 'react-native';
+import Feather from "@expo/vector-icons/Feather";
+import Entypo from "@expo/vector-icons/Entypo";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Alert, TouchableOpacity } from "react-native";
 
 // Define a type for the tab icon props
 type TabIconProps = {
@@ -20,6 +18,8 @@ const renderIcon = (IconComponent: React.ComponentType<any>, name: string) => {
     <IconComponent name={name} size={size} color={color} />
   );
 };
+
+// Logout confirmation function
 const confirmLogout = (router: any) => {
   Alert.alert(
     "Confirm Logout",
@@ -37,21 +37,22 @@ const confirmLogout = (router: any) => {
     ]
   );
 };
+
 export default function Layout() {
   const router = useRouter(); // Initialize router
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#FF6C00', // Active tab color
-        tabBarInactiveTintColor: 'gray', // Inactive tab color
-        tabBarLabelStyle: { 
-          fontSize: 13, 
-          fontWeight: 'bold', 
-          marginBottom: -10, 
-        } as StyleProp<TextStyle>, // Tab label style
+        tabBarActiveTintColor: "#FF6C00", // Active tab color
+        tabBarInactiveTintColor: "gray", // Inactive tab color
+        tabBarLabelStyle: {
+          fontSize: 13,
+          fontWeight: "bold",
+          marginBottom: -10,
+        }, // Tab label style
 
-        headerStyle: { 
+        headerStyle: {
           elevation: 0, // Remove shadow on Android
           shadowOpacity: 0, // Remove shadow on iOS
           borderBottomWidth: 0, // Remove bottom border line
@@ -65,17 +66,18 @@ export default function Layout() {
 
         tabBarStyle: {
           position: "absolute", // Keep it floating
-          bottom: 0, 
-          left: 20, 
-          right: 20, 
-          borderRadius: 20, 
-          height: 60, 
-          backgroundColor: "#fff", 
+          bottom: 0,
+          left: 20,
+          right: 20,
+          borderRadius: 20,
+          height: 60,
+          backgroundColor: "#fff",
           shadowColor: "transparent",
           paddingTop: 10,
         },
       }}
     >
+      {/* Styles Tab */}
       <Tabs.Screen
         name="Styles"
         options={{
@@ -83,11 +85,18 @@ export default function Layout() {
           tabBarIcon: renderIcon(Feather, "home"),
           headerRight: () => (
             <TouchableOpacity onPress={() => confirmLogout(router)}>
-              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
+              <MaterialIcons
+                name="logout"
+                size={30}
+                color="#FF6C00"
+                className="mr-7"
+              />
             </TouchableOpacity>
           ),
         }}
       />
+
+      {/* Feeds Tab */}
       <Tabs.Screen
         name="Feeds"
         options={{
@@ -95,11 +104,18 @@ export default function Layout() {
           tabBarIcon: renderIcon(Entypo, "news"),
           headerRight: () => (
             <TouchableOpacity onPress={() => confirmLogout(router)}>
-              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
+              <MaterialIcons
+                name="logout"
+                size={30}
+                color="#FF6C00"
+                className="mr-7"
+              />
             </TouchableOpacity>
           ),
         }}
       />
+
+      {/* Settings Tab */}
       <Tabs.Screen
         name="Settings"
         options={{
@@ -111,13 +127,18 @@ export default function Layout() {
                 name="arrowleft"
                 size={26}
                 color="black"
-                style={styles.arrowLeft}
+                className="ml-4 mr-5"
               />
             </TouchableOpacity>
           ),
           headerRight: () => (
             <TouchableOpacity onPress={() => confirmLogout(router)}>
-              <MaterialIcons name="logout" size={30} color="#FF6C00" style={{ marginRight: 28 }} />
+              <MaterialIcons
+                name="logout"
+                size={30}
+                color="#FF6C00"
+                className="mr-7"
+              />
             </TouchableOpacity>
           ),
         }}
@@ -125,10 +146,3 @@ export default function Layout() {
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  arrowLeft: {
-    marginLeft: 15, // Add left margin for spacing
-    marginRight: 20,
-  },
-});
