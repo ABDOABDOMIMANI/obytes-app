@@ -77,7 +77,7 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="styles/Styles"
+        name="Styles"
         options={{
           title: "Styles",
           tabBarIcon: renderIcon(Feather, "home"),
@@ -89,7 +89,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="feed/Feeds"
+        name="Feeds"
         options={{
           title: "Feed",
           tabBarIcon: renderIcon(Entypo, "news"),
@@ -101,12 +101,12 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="settings/Settings"
+        name="Settings"
         options={{
           title: "Settings",
           tabBarIcon: renderIcon(Entypo, "cog"),
           headerLeft: () => (
-            <TouchableOpacity onPress={() => router.push("../../../EntryPage")}>
+            <TouchableOpacity onPress={() => router.push("../../EntryPage")}>
               <AntDesign
                 name="arrowleft"
                 size={26}

@@ -2,8 +2,8 @@ import { StyleSheet, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from "../splash-screen";
 import { useEffect, useState } from "react";
-import EntryPage from "./EntryPage"; // Fixed import path
-import { useRouter } from 'expo-router';
+import EntryPage from "../app/EntryPage";
+import { useRouter } from "expo-router";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ export default function App() {
   // Prevent going back once splash screen is done
   useEffect(() => {
     if (!isLoading) {
-      router.canGoBack(false); // Set to false to prevent going back
+      router.canGoBack(); // Set to false to prevent going back
     }
   }, [isLoading]);
 

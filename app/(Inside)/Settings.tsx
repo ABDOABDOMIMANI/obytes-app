@@ -88,7 +88,7 @@ const Settings = () => {
 
       {/* Footer */}
       <View style={styles.avatarContainer} >
-            <Image source={require('../../../assets/footer.png')} style={styles.avatar} />
+            <Image source={require('../../assets/footer.png')} style={styles.avatar} />
             </View>
     </View>
   );

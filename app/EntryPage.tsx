@@ -13,7 +13,7 @@ const ObytesDesignSystem: React.FC = () => {
       return;
     }
     try {
-      router.push({pathname: "/register/EmailPage"}); // Updated route
+      router.push("/register/EmailPage"); // Updated route
       console.log("Navigating to registration page");
     } catch (error) {
       console.error("Navigation error:", error);

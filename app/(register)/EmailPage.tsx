@@ -6,6 +6,7 @@ import {
   StyleSheet, 
   Alert, 
   KeyboardAvoidingView, 
+  ScrollView, 
   TouchableWithoutFeedback, 
   Keyboard, 
   Platform,
@@ -15,9 +16,9 @@ import TextField from "../../components/TextFieldProps";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import Feather from '@expo/vector-icons/Feather';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-const ConfirmPage = () => {
-  const [password, setPassword] = useState("");
+
+const EmailPage = () => {
+  const [email, setEmail] = useState("");
   const router = useRouter();
   const [keyboardHeight] = useState(new Animated.Value(0));
 
@@ -52,26 +53,21 @@ const ConfirmPage = () => {
 
   const buttonPosition = keyboardHeight.interpolate({
     inputRange: [0, 26],
-    outputRange: [10, 100]
+    outputRange: [10,100]
   });
 
-  const handleContinue = async () => {
-    try {
-      const storedPassword = await AsyncStorage.getItem("password"); // Retrieve stored password
-  
-      if (!password) {
-        Alert.alert("Error", "Please enter your password");
-        return;
-      } else if (password !== storedPassword) {
-        Alert.alert("Error", "Passwords do not match. Please try again.");
-        return;
-      } else {
-        router.push("../../Inside/styles/Styles"); // Navigate to the next page
-      }
-    } catch (error) {
-      console.error("Error retrieving password:", error);
-    }
-  };
+  const handleContinue = () => {
+  if (!email) {
+    Alert.alert("Error", "Please enter your email");
+    return;
+  }
+  try {
+    router.push("/PasswordPage");  // Updated path to match your project structure
+    console.log("Navigating to password page");
+  } catch (error) {
+    console.error("Navigation error:", error);
+  }
+};
 
   return (
     <KeyboardAvoidingView 
@@ -80,6 +76,7 @@ const ConfirmPage = () => {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
+          
           <View style={styles.header}>
             <TouchableOpacity 
               onPress={() => router.back()} 
@@ -90,22 +87,24 @@ const ConfirmPage = () => {
           </View>
 
           <View style={styles.content}>
-            <Text style={styles.title}>Confirm yourpassword</Text>
-            <Text style={styles.subTitle}>Make it the same!</Text>
+            <Text style={styles.title}>What is your email address?</Text>
+            <Text style={styles.subTitle}>You'll Use This To Log In</Text>
             
             <View style={styles.inputContainer}>
               <TextField 
-                title="Confirm Password"
-                placeholder="Enter your password again"
-                value={password}
-                onChangeText={setPassword}
+                title="Email"
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={setEmail}
                 
                 
               />
             </View>
 
             <Text style={styles.termsText}>
-              Password must be at least 8 characters long and include numbers and symbols
+              By continuing, you agree to our{' '}
+              <Text style={styles.termsLink}>terms and conditions</Text> and{' '}
+              <Text style={styles.termsLink}>privacy policy</Text>
             </Text>
           </View>
 
@@ -116,18 +115,18 @@ const ConfirmPage = () => {
             <TouchableOpacity 
               style={[
                 styles.button, 
-                password ? styles.buttonActive : null
+                email ? styles.buttonActive : null
               ]} 
               onPress={handleContinue}
             >
               <Text style={[
                 styles.buttonText, 
-                password ? styles.buttonTextActive : null
+                email ? styles.buttonTextActive : null
               ]}>Continue</Text>
               <Feather 
                 name="arrow-right-circle" 
                 size={24} 
-                color={password ? "#FFFFFF" : "#737373"} 
+                color={email ? "#FFFFFF" : "#737373"} 
               />
             </TouchableOpacity>
           </Animated.View>
@@ -145,11 +144,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    marginBottom: 30,
   },
   header: {
-    marginTop: 24,
-    
+    marginTop: 20,
+    marginBottom: 10,
   },
   backButton: {
     width: 40,
@@ -171,15 +169,19 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   inputContainer: {
-    marginBottom: -21,
+    marginBottom: -20, // Ajoute un espace de 10 entre l'input et les conditions
   },
   termsText: {
-    fontSize: 10,
+    fontSize: 13,
     color: "#A3A3A3",
     textAlign: "center",
     lineHeight: 20,
     fontStyle: "italic",
-    paddingBottom: 90,
+    marginTop: 10, // Espace de 10 entre l'input et les conditions
+  },
+  termsLink: {
+    color: "#000000",
+    fontWeight: "500",
   },
   buttonContainer: {
     position: 'absolute',
@@ -209,4 +211,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConfirmPage;
+export default EmailPage;

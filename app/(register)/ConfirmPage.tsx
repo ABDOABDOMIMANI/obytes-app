@@ -16,8 +16,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import Feather from '@expo/vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const PasswordPage = () => {
+const ConfirmPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [keyboardHeight] = useState(new Animated.Value(0));
@@ -56,24 +55,23 @@ const PasswordPage = () => {
     outputRange: [10, 100]
   });
 
-
-const handleContinue = async () => {
-  if (!password) {
-    Alert.alert("Error", "Please enter your password");
-    return;
-  } else if (password.length < 4) {
-    Alert.alert("Error", "Password must be at least 4 characters long");
-    return;
-  } else {
+  const handleContinue = async () => {
     try {
-      await AsyncStorage.setItem("password", password); // Store password
-      router.push("../register/ConfirmPage"); // Navigate to the confirmation page
+      const storedPassword = await AsyncStorage.getItem("password"); // Retrieve stored password
+  
+      if (!password) {
+        Alert.alert("Error", "Please enter your password");
+        return;
+      } else if (password !== storedPassword) {
+        Alert.alert("Error", "Passwords do not match. Please try again.");
+        return;
+      } else {
+        router.push("/Styles"); // Navigate to the next page
+      }
     } catch (error) {
-      console.error("Error saving password:", error);
+      console.error("Error retrieving password:", error);
     }
-  }
-};
-
+  };
 
   return (
     <KeyboardAvoidingView 
@@ -92,13 +90,13 @@ const handleContinue = async () => {
           </View>
 
           <View style={styles.content}>
-            <Text style={styles.title}>Create a password</Text>
-            <Text style={styles.subTitle}>Make it strong!</Text>
+            <Text style={styles.title}>Confirm yourpassword</Text>
+            <Text style={styles.subTitle}>Make it the same!</Text>
             
             <View style={styles.inputContainer}>
               <TextField 
-                title="Password"
-                placeholder="Enter your password"
+                title="Confirm Password"
+                placeholder="Enter your password again"
                 value={password}
                 onChangeText={setPassword}
                 
@@ -211,4 +209,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PasswordPage;
+export default ConfirmPage;

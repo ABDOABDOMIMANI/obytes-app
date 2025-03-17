@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import TextField from "../../components/TextFieldProps";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ const LoginPage = () => {
     // Simulate a login API call
     if (email === "A" && password === "A") {
       // Update the navigation path to the Styles page
-      router.push({ pathname: "../Inside/styles/Styles" });
+      router.push("/Styles");
     } else {
       Alert.alert("Error", "Invalid email or password");
     }
@@ -35,7 +35,7 @@ const LoginPage = () => {
           name="arrowleft"
           size={26}
           color="black"
-          onPress={() => router.push({ pathname: "../EntryPage" })}
+          onPress={() => router.back()}
         />
         <Text style={styles.title}>Welcome Back!</Text>
         <TextField

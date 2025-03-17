@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, Alert, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import Subtitle from "../../../components/Subtitle";
-import ColoredCercle from "../../../components/ColoredCercle";
-import TextField from "../../../components/TextFieldProps";
+import Subtitle from "../../components/Subtitle";
+import ColoredCercle from "../../components/ColoredCercle";
+import TextField from "../../components/TextFieldProps";
 import { Picker } from '@react-native-picker/picker';
 const Styles = () => {
   const [email, setEmail] = useState("");
@@ -94,6 +94,7 @@ const Styles = () => {
           placeholder="Choose one..." 
           
         />
+        
         <TextField title="Error" placeholder="Lorem ipsum dolor sit amet" />
         <TextField title="Focused" placeholder="Lorem ipsum dolor sit amet" />
         <Subtitle text="Buttons" />
